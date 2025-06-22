@@ -3,15 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('reserva-form');
     const salaSelectorBtn = document.getElementById('sala-selector-btn');
     const salaSelectorText = document.getElementById('sala-selector-text');
-    const dateSelectorBtn = document.getElementById('date-selector-btn');
+    
+    // Elementos de Data e Hora
     const dateSelectorText = document.getElementById('date-selector-text');
     const nativeDateInput = document.getElementById('native-date-input');
-    const timeInicioBtn = document.getElementById('time-inicio-btn');
     const timeInicioText = document.getElementById('time-inicio-text');
     const nativeTimeInicioInput = document.getElementById('native-time-inicio-input');
-    const timeFimBtn = document.getElementById('time-fim-btn');
     const timeFimText = document.getElementById('time-fim-text');
     const nativeTimeFimInput = document.getElementById('native-time-fim-input');
+    
     const descricaoInput = document.getElementById('descricao');
     const submitButton = document.getElementById('submit-button');
     const buttonText = document.getElementById('button-text');
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Lógica dos Seletores de Data e Hora ---
-    dateSelectorBtn.addEventListener('click', () => nativeDateInput.showPicker());
+    // A interação é feita pelo <label> no HTML. O JS apenas escuta as mudanças.
     nativeDateInput.addEventListener('change', (e) => {
         selectedDate = new Date(e.target.value + 'T00:00:00'); // Evita problemas de fuso
         dateSelectorText.textContent = formatarData(selectedDate);
@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSubmitButtonState();
     });
 
-    timeInicioBtn.addEventListener('click', () => nativeTimeInicioInput.showPicker());
     nativeTimeInicioInput.addEventListener('change', (e) => {
         const [hour, minute] = e.target.value.split(':');
         selectedTimeInicio = new Date();
@@ -83,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSubmitButtonState();
     });
 
-    timeFimBtn.addEventListener('click', () => nativeTimeFimInput.showPicker());
     nativeTimeFimInput.addEventListener('change', (e) => {
         const [hour, minute] = e.target.value.split(':');
         selectedTimeFim = new Date();
