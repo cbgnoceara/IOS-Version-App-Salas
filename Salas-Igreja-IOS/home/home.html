@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="home.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+<body>
+
+    <button id="profile-button" class="profile-icon-container">
+        <img id="profile-image-header" src="" alt="Foto de Perfil" class="profile-image" style="display: none;" />
+        <i id="profile-icon-default" class="ri-account-circle-fill default-profile-icon"></i>
+    </button>
+
+    <div id="profile-modal" class="modal-overlay">
+        <div class="modal-content">
+            <img id="profile-image-modal" src="" alt="Foto de Perfil" class="modal-image" style="display: none;" />
+            <i id="modal-icon-default" class="ri-account-circle-fill default-modal-icon"></i>
+            <p id="modal-username" class="modal-username"></p>
+
+            <button id="edit-photo-button" class="modal-button">Editar Foto</button>
+            <button id="close-modal-button" class="modal-button secondary">Fechar</button>
+        </div>
+    </div>
+    <input type="file" id="photo-input" accept="image/*" style="display: none;" />
+
+    <main id="main-content" class="container">
+        <header class="header">
+            <h1 id="welcome-title" class="title">Olá, bem-vindo!</h1>
+            <p class="subtitle">Gerencie suas reservas de sala</p>
+        </header>
+
+        <div class="content">
+            <a href="/reserva-screen/criar-reserva.html" class="card">
+                <h2 class="card-title">Criar Reserva</h2>
+                <p class="card-subtitle">Agende uma nova reserva de sala</p>
+            </a>
+            <a href="/minhas_reservas/minhas-reservas.html" class="card">
+                <h2 class="card-title">Minhas Reservas</h2>
+                <p class="card-subtitle">Veja suas reservas cadastradas</p>
+            </a>
+            <a href="/salas-reservadas-screen/salas-reservadas.html" class="card">
+                <h2 class="card-title">Salas Reservadas</h2>
+                <p class="card-subtitle">Veja as reservas feitas por outros usuários</p>
+            </a>
+            <a href="/OutrosUsuariosScreen/outros-usuarios.html" class="card">
+                <h2 class="card-title">Outros Usuários</h2>
+                <p class="card-subtitle">Veja os membros cadastrados no sistema</p>
+            </a>
+        </div>
+
+        <button id="logout-button" class="logout-button">Sair</button>
+    </main>
+
+    <script src="home.js"></script>
+</body>
+</html>
