@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar</title>
+    <link rel="stylesheet" href="/auth-css/auth-styles.css">
+</head>
+<body>
+    <div class="container">
+        <form id="login-form" class="auth-form">
+            <h1 class="title">Entrar</h1>
+
+            <p id="error-message" class="error-text"></p>
+
+            <input
+                type="text"
+                id="nome"
+                class="input"
+                placeholder="Nome"
+                required
+            />
+            <input
+                type="password"
+                id="senha"
+                class="input"
+                placeholder="Senha"
+                required
+            />
+
+            <button type="submit" class="button">Entrar</button>
+
+            <div class="link-container">
+                <a href="/register/register.html" class="link-text">Não tem uma conta? Cadastrar-se</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="./login.js"></script>
+</body>
+</html>
