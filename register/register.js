@@ -7,12 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     registerForm.addEventListener('submit', async (event) => {
         event.preventDefault();
 
-        const nome = nomeInput.value;
-        const sobrenome = sobrenomeInput.value;
-        const senha = senhaInput.value;
+        // --- ALTERAÇÃO AQUI ---
+        // Usamos .trim() para remover espaços do início e do fim
+        const nome = nomeInput.value.trim();
+        const sobrenome = sobrenomeInput.value.trim();
+        const senha = senhaInput.value; // Não aplicamos trim na senha, pois espaços podem ser intencionais
 
         if (!nome || !sobrenome || !senha) {
-            // alert é o equivalente web do Alert.alert
             alert('Erro: Preencha todos os campos!');
             return;
         }
@@ -23,15 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                // Enviamos os valores já limpos
                 body: JSON.stringify({ nome, sobrenome, senha }),
             });
 
             const data = await response.json();
 
             if (response.status === 201) {
-                alert('Sucesso: Cadastro realizado com sucesso!');
-                // Redireciona para a página de login
-                window.location.href = '/home/home.html'; 
+                alert('Sucesso: Cadastro realizado com sucesso! Você será redirecionado para o login.');
+                // Redireciona para a página de login após o sucesso
+                window.location.href = '/login/entrar.html'; // Corrigido para levar ao login
             } else {
                 alert(`Erro: ${data.message || 'Erro ao cadastrar'}`);
             }
