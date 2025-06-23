@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.status === 201) {
                 alert('Sucesso: Cadastro realizado com sucesso! Você será redirecionado para o login.');
                 // Redireciona para a página de login após o sucesso
-                window.location.href = '/home/home.html'; // Corrigido para levar ao login
+                window.location.href = '/login/login.html'; // Corrigido para levar ao login
             } else {
                 alert(`Erro: ${data.message || 'Erro ao cadastrar'}`);
             }
