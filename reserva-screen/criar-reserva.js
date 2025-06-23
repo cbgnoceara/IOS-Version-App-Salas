@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedTimeFim = null;
 
     const salasDisponiveis = [
-        'Sala 1 anexo novo', 'Sala 2 anexo novo', 'Anexo 1 Terraço', 'Sala -1 A',
-        'Sala -1 B', 'Sala 4 anexo em cima', 'Sala 5 anexo 1 bazar',
+        'Sala 1 anexo novo', 'Sala 2 anexo novo', 'Anexo 1 Terraço', 'Sala - 1 A, P. Antigo',
+        'Sala -1 B, P. Antigo', 'Sala 4 anexo em cima', 'Sala 5 anexo 1 bazar',
         'Sala 6 anexo escritório', 'Nave 1 principal', 'Nave 2 lateral',
     ];
 
