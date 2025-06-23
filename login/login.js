@@ -5,10 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const senhaInput = document.getElementById('senha');
 
     loginForm.addEventListener('submit', async (event) => {
-        // Previne o recarregamento padrão da página
         event.preventDefault(); 
 
-        const nome = nomeInput.value;
+        // --- ALTERAÇÃO AQUI ---
+        // Usamos .trim() para garantir que o nome de login também seja limpo
+        const nome = nomeInput.value.trim();
         const senha = senhaInput.value;
 
         if (!nome || !senha) {
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                // Enviamos o nome já limpo
                 body: JSON.stringify({ nome, senha }),
             });
 
@@ -31,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const { user } = data;
 
                 if (user && user._id && user.nome) {
-                    // localStorage é o equivalente web do AsyncStorage
                     localStorage.setItem('userId', user._id);
                     localStorage.setItem('nome', user.nome);
                     localStorage.setItem('fotoUrl', user.fotoPerfil || '');
@@ -40,10 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                errorMessage.textContent = ''; // Limpa a mensagem de erro
+                errorMessage.textContent = '';
                 
-                // Redireciona para a página principal após o login
-                window.location.href = '/home/home.html'; // Assumindo que a home seja 'home.html'
+                window.location.href = '/home/home.html';
 
             } else {
                 errorMessage.textContent = data.message || 'Login inválido';
