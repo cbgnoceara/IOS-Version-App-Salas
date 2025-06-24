@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Se não houver 'userId', o usuário não está logado.
         alert('Sua sessão expirou. Por favor, faça login novamente.');
         // Redireciona para a página de login. Ajuste o caminho se necessário.
-        window.location.href = '/login/entrar.html';
+        window.location.href = '/login/login.html';
         // Impede que o resto do script seja executado.
         return; 
     }
