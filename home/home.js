@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- NOVO: Bloco de verificação de Login ---
+    // Esta é a primeira coisa que o script faz.
+    const usuarioId = localStorage.getItem('userId');
+    if (!usuarioId) {
+        // Se não houver 'userId', o usuário não está logado.
+        alert('Sua sessão expirou. Por favor, faça login novamente.');
+        // Redireciona para a página de login. Ajuste o caminho se necessário.
+        window.location.href = '/login/entrar.html';
+        // Impede que o resto do script seja executado.
+        return; 
+    }
+    
+    // --- O restante do código só executa se o usuário estiver logado ---
+
     // --- Elementos do DOM ---
     const mainContent = document.getElementById('main-content');
     const welcomeTitle = document.getElementById('welcome-title');
@@ -30,16 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (fotoUrl) {
-            // Atualiza a imagem no header
             profileImageHeader.src = fotoUrl;
             profileImageHeader.style.display = 'block';
             profileIconDefault.style.display = 'none';
-            // Atualiza a imagem no modal
             profileImageModal.src = fotoUrl;
             profileImageModal.style.display = 'block';
             modalIconDefault.style.display = 'none';
         } else {
-            // Garante que o ícone padrão seja exibido se não houver foto
             profileImageHeader.style.display = 'none';
             profileIconDefault.style.display = 'block';
             profileImageModal.style.display = 'none';
@@ -49,19 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Faz o upload da foto selecionada para o servidor
     const uploadFoto = async (file) => {
-        const usuarioId = localStorage.getItem('userId');
-        if (!usuarioId) {
-            alert('Erro: ID do usuário não encontrado. Faça login novamente.');
-            return;
-        }
-
+        // Não precisamos mais verificar o usuarioId aqui, pois já foi feito no início.
         const formData = new FormData();
         formData.append('foto', file);
 
         try {
             const response = await fetch(`https://salas-app-back-end.onrender.com/api/users/upload-foto/${usuarioId}`, {
                 method: 'POST',
-                body: formData, // O cabeçalho 'Content-Type' é definido automaticamente pelo navegador com FormData
+                body: formData,
             });
 
             if (!response.ok) {
@@ -72,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             const { user } = data;
 
-            // Salva a nova URL da foto e atualiza a UI
             localStorage.setItem('fotoUrl', user.fotoPerfil);
             carregarDadosUsuario(); 
             alert('Sucesso! Foto de perfil atualizada.');
@@ -100,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
     closeModalButton.addEventListener('click', () => {
         profileModal.classList.remove('visible');
     });
-    // Fechar modal clicando no overlay
     profileModal.addEventListener('click', (e) => {
         if (e.target === profileModal) {
             profileModal.classList.remove('visible');
@@ -122,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Botão de Logout
     logoutButton.addEventListener('click', () => {
-        // Limpa o armazenamento local ao sair
         localStorage.removeItem('userId');
         localStorage.removeItem('nome');
         localStorage.removeItem('fotoUrl');
@@ -131,5 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Inicialização ---
+    // A função carregarDadosUsuario só será chamada se o usuário estiver logado.
     carregarDadosUsuario();
 });
