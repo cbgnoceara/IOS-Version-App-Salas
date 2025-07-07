@@ -65,12 +65,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Lógica dos Seletores de Data e Hora ---
     // A interação é feita pelo <label> no HTML. O JS apenas escuta as mudanças.
     nativeDateInput.addEventListener('change', (e) => {
-        selectedDate = new Date(e.target.value + 'T00:00:00'); // Evita problemas de fuso
+        const dateValue = e.target.value;
+        // Cria uma data temporária para verificação. Usar T12:00:00 evita problemas de fuso.
+        const tempDate = new Date(dateValue + 'T12:00:00');
+
+        // *** INÍCIO DA ALTERAÇÃO ***
+        // getDay() retorna 0 para Domingo, 1 para Segunda, 2 para Terça, etc.
+        if (tempDate.getDay() === 1) {
+            // 1. Exibe a mensagem solicitada.
+            alert('Por ordens do Pastor, não é possível reservar salas as segundas feiras.');
+
+            // 2. Limpa a seleção de data para impedir o agendamento.
+            e.target.value = ''; // Limpa o valor do input nativo.
+            dateSelectorText.textContent = 'Clique para selecionar a data';
+            dateSelectorText.classList.add('placeholder-text');
+            dateSelectorText.classList.remove('input-text');
+            selectedDate = null;
+            updateSubmitButtonState(); // Atualiza o estado do botão
+            return; // Interrompe a execução da função para não salvar a data inválida.
+        }
+        // *** FIM DA ALTERAÇÃO ***
+
+        selectedDate = new Date(dateValue + 'T00:00:00'); // Lógica original para datas válidas.
         dateSelectorText.textContent = formatarData(selectedDate);
         dateSelectorText.classList.remove('placeholder-text');
         dateSelectorText.classList.add('input-text');
         updateSubmitButtonState();
     });
+
 
     nativeTimeInicioInput.addEventListener('change', (e) => {
         const [hour, minute] = e.target.value.split(':');
