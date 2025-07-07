@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // getDay() retorna 0 para Domingo, 1 para Segunda, 2 para Terça, etc.
         if (tempDate.getDay() === 1) {
             // 1. Exibe a mensagem solicitada.
-            alert('Por ordens do Pastor, não é possível reservar salas as segundas feiras.');
+            alert('Por ordens do Pastor, não é possível reservar as salas nas segundas feiras.');
 
             // 2. Limpa a seleção de data para impedir o agendamento.
             e.target.value = ''; // Limpa o valor do input nativo.
