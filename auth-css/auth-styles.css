@@ -1,94 +1,169 @@
-/* Importa uma fonte similar à do sistema para melhor aparência */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+/* /auth-css/auth-styles.css (Glassmorphism com Contraste Corrigido) */
 
-body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100vh;
-    font-family: 'Inter', sans-serif;
-    background-color: #fff;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 24px;
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
-.auth-form {
-    width: 100%;
-    max-width: 400px; /* Limita a largura máxima em telas grandes */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+:root {
+    --cor-primaria: #3A6AB2;
+    --cor-secundaria: #608BC5;
+    --cor-fundo-claro: #F0F4F9;
+    --cor-branca: #FFFFFF;
+    --cor-erro: #ef4444;
+    --fonte-principal: 'Poppins', 'system-ui', sans-serif;
 }
 
+/* --- 1. FUNDO COM IMAGEM E DESFOQUE --- */
+body {
+    /* Cor de fundo caso a imagem não carregue */
+    background-color: #1a1a2e;
+    font-family: var(--fonte-principal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 15px;
+}
+
+/* O pseudo-elemento carrega a imagem, a sobreposição e o blur */
+body::before {
+    content: '';
+    position: fixed;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    z-index: -1;
+
+    /* Combina a sobreposição escura com a sua imagem de logo */
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('/assets/20250728_2011_Menorá\ Azul\ e\ Branco_remix_01k19mpt9re4t86cs958qkep5y.png');
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    
+    /* Desfoque para garantir legibilidade */
+    filter: blur(8px);
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* --- 2. FORMULÁRIO COM EFEITO DE VIDRO ESCURO --- */
+.auth-form {
+    width: 100%;
+    padding: 30px 25px;
+    border-radius: 20px;
+    text-align: center;
+    
+    /* ALTERAÇÃO: Trocado para um vidro com tonalidade escura */
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* --- 3. CORES AJUSTADAS PARA CONTRASTE --- */
 .title {
-    font-size: 28px;
-    color: #111827;
-    margin-bottom: 30px;
-    font-weight: bold;
+    color: var(--cor-branca);
+    font-size: 2.2em;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .input {
     width: 100%;
-    height: 55px;
-    background-color: #f3f4f6;
-    border-radius: 12px;
-    padding: 0 16px;
+    padding: 15px;
     margin-bottom: 15px;
-    border: 1.5px solid #d1d5db;
-    font-size: 16px;
-    color: #111827;
-    box-sizing: border-box;
-    transition: border-color 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
+    border-radius: 10px;
+    /* ALTERAÇÃO: Fundo do input também com tonalidade escura */
+    background-color: rgba(0, 0, 0, 0.2);
+    font-family: var(--fonte-principal);
+    font-size: 1em;
+    transition: all 0.3s ease;
+    color: var(--cor-branca);
+}
+
+.input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .input:focus {
     outline: none;
-    border-color: #3b82f6; /* Destaque ao focar no input */
+    border-color: var(--cor-branca);
+    /* ALTERAÇÃO: Foco também com tonalidade escura */
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .button {
     width: 100%;
-    background-color: #111827;
-    color: #fff;
-    padding: 16px 0;
-    border-radius: 12px;
-    text-align: center;
-    margin-top: 10px;
-    font-size: 17px;
-    font-weight: bold;
+    padding: 15px;
     border: none;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    font-family: var(--fonte-principal);
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--cor-primaria);
+    background: var(--cor-branca);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 }
 
 .button:hover {
-    background-color: #374151;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .link-container {
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .link-text {
-    color: #6b7280;
-    font-size: 15px;
+    color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .link-text:hover {
     text-decoration: underline;
+    color: var(--cor-branca);
 }
 
+/* Mensagem de erro */
 .error-text {
-    color: #ef4444; /* Vermelho para erros */
-    margin-bottom: 10px;
-    font-size: 15px;
-    min-height: 20px; /* Evita que o layout "pule" quando a mensagem aparece */
+    padding: 0;
+    margin: 0;
+    border-radius: 8px;
+    font-size: 0.9em;
+    text-align: center;
+    transition: all 0.3s ease;
+    color: var(--cor-branca);
+    font-weight: 500;
+}
+
+.error-text:not(:empty) {
+    background-color: rgba(239, 68, 68, 0.5);
+    padding: 10px;
+    margin-bottom: 15px;
 }
