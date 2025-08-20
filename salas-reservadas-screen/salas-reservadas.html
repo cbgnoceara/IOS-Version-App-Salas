@@ -2,24 +2,63 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Salas Reservadas</title>
-    <link rel="stylesheet" href="/shared-css/shared-styles.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
-    <style>
-        .card-link { text-decoration: none; color: inherit; }
-        .ri-arrow-right-s-line { font-size: 24px; color: #6b7280; }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/shared-css/app-styles.css">
 </head>
-<body>
-    <main class="safe-area">
-        <header class="page-header">
-            <a href="javascript:history.back()" class="back-button"><i class="ri-arrow-left-line" style="font-size: 28px;"></i></a>
-            <h1 class="title">Salas Reservadas</h1>
-            <p class="subtitle">Veja as reservas feitas por outros usuários.</p>
+<body class="antialiased">
+
+    <main class="p-5 md:p-6 max-w-3xl mx-auto">
+        <header>
+            <h1 class="text-3xl font-extrabold text-gray-800 mb-2">Todas as Salas</h1>
+            <p class="text-gray-500 mb-8">Veja os eventos agendados por todos.</p>
         </header>
-        <div id="content-container" class="content-container"></div>
+        
+        <div id="content-container" class="space-y-4">
+            <div id="loading-state" class="text-center py-10">
+                <div class="spinner dark"></div>
+                <p class="mt-4 text-gray-500">Buscando agendamentos...</p>
+            </div>
+        </div>
     </main>
+
+    <nav class="nav-bar">
+        <a href="/home/home.html" class="nav-item">
+            <i class="ri-home-5-line"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item active">
+            <i class="ri-building-4-fill"></i>
+            <span>Salas</span>
+        </a>
+        <a href="../OutrosUsuariosScreen/outros-usuarios.html" class="nav-item">
+            <i class="ri-team-line"></i>
+            <span>Usuários</span>
+        </a>
+        <button id="logout-button" class="nav-item">
+            <i class="ri-logout-box-r-line"></i>
+            <span>Sair</span>
+        </button>
+    </nav>
+    
+    <div id="confirm-modal" class="modal-overlay">
+        <div class="modal-content-wrapper p-6 w-11/12 max-w-sm text-center">
+            <h3 id="confirm-modal-title" class="text-lg font-bold text-gray-800 mb-2"></h3>
+            <p id="confirm-modal-text" class="text-gray-600 mb-6"></p>
+            <div class="flex justify-center gap-4">
+                <button id="cancel-confirm-btn" class="modal-button secondary w-full">Não</button>
+                <button id="confirm-action-btn" class="modal-button danger w-full">Sim</button>
+            </div>
+        </div>
+    </div>
+    
     <script src="salas-reservadas.js"></script>
 </body>
 </html>

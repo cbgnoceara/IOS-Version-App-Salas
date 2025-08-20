@@ -2,58 +2,109 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="home.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Reserva de Salas</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Remixicon -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS Customizado -->
+    <link rel="stylesheet" href="home.css">
 </head>
-<body>
+<body class="antialiased">
 
-    <button id="profile-button" class="profile-icon-container">
-        <img id="profile-image-header" src="" alt="Foto de Perfil" class="profile-image" style="display: none;" />
-        <i id="profile-icon-default" class="ri-account-circle-fill default-profile-icon"></i>
-    </button>
-
-    <div id="profile-modal" class="modal-overlay">
-        <div class="modal-content">
-            <img id="profile-image-modal" src="" alt="Foto de Perfil" class="modal-image" style="display: none;" />
-            <i id="modal-icon-default" class="ri-account-circle-fill default-modal-icon"></i>
-            <p id="modal-username" class="modal-username"></p>
-
-            <button id="edit-photo-button" class="modal-button">Editar Foto</button>
-            <button id="close-modal-button" class="modal-button secondary">Fechar</button>
-        </div>
-    </div>
-    <input type="file" id="photo-input" accept="image/*" style="display: none;" />
-
-    <main id="main-content" class="container">
-        <header class="header">
-            <h1 id="welcome-title" class="title">Olá, bem-vindo!</h1>
-            <p class="subtitle">Gerencie suas reservas de sala</p>
+    <!-- Conteúdo Principal -->
+    <main class="p-5 md:p-6 max-w-3xl mx-auto">
+        <!-- Cabeçalho -->
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 id="welcome-title" class="text-3xl font-extrabold text-gray-800">Olá!</h1>
+                <p class="text-gray-500">Suas reservas para a semana.</p>
+            </div>
+            <button id="profile-button" class="transition-transform duration-300 active:scale-90">
+                <img id="profile-image-header" src="https://placehold.co/48x48/E2E8F0/4A5568?text=P" alt="Foto de Perfil" class="w-12 h-12 rounded-full object-cover border-2 border-white shadow-lg">
+            </button>
         </header>
 
-        <div class="content">
-            <a href="/reserva-screen/criar-reserva.html" class="card">
-                <h2 class="card-title">Criar Reserva</h2>
-                <p class="card-subtitle">Agende uma nova reserva de sala</p>
-            </a>
-            <a href="/minhas_reservas/minhas-reservas.html" class="card">
-                <h2 class="card-title">Minhas Reservas</h2>
-                <p class="card-subtitle">Veja suas reservas cadastradas</p>
-            </a>
-            <a href="/salas-reservadas-screen/salas-reservadas.html" class="card">
-                <h2 class="card-title">Salas Reservadas</h2>
-                <p class="card-subtitle">Veja as reservas feitas por outros usuários</p>
-            </a>
-            <a href="/OutrosUsuariosScreen/outros-usuarios.html" class="card">
-                <h2 class="card-title">Outros Usuários</h2>
-                <p class="card-subtitle">Veja os membros cadastrados no sistema</p>
-            </a>
-        </div>
-
-        <button id="logout-button" class="logout-button">Sair</button>
+        <!-- Seção de Reservas -->
+        <section>
+            <div class="flex justify-between items-center mb-4">
+                 <h2 class="text-xl font-bold text-gray-700">Próximos Eventos</h2>
+                 <a href="/reserva-screen/criar-reserva.html" id="add-reservation-shortcut" class="bg-blue-600 text-white font-semibold flex items-center gap-2 px-4 py-2 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 hover:bg-blue-700 active:scale-95">
+                    <i class="ri-add-line"></i>
+                    <span>Nova</span>
+                 </a>
+            </div>
+           
+            <!-- Container das Reservas -->
+            <div id="reservas-container" class="space-y-4">
+                <!-- Estado de Carregamento -->
+                <div id="loading-state" class="text-center py-10">
+                    <div class="spinner"></div>
+                    <p class="mt-4 text-gray-500">Buscando suas reservas...</p>
+                </div>
+            </div>
+        </section>
     </main>
 
+    <!-- Rodapé de Navegação Fixo -->
+    <nav class="nav-bar">
+        <a href="#" class="nav-item active">
+            <i class="ri-home-5-fill"></i>
+            <span>Home</span>
+        </a>
+        <a href="/salas-reservadas-screen/salas-reservadas.html" class="nav-item">
+            <i class="ri-building-4-line"></i>
+            <span>Salas</span>
+        </a>
+        <a href="/OutrosUsuariosScreen/outros-usuarios.html" class="nav-item">
+            <i class="ri-team-line"></i>
+            <span>Usuários</span>
+        </a>
+        <button id="logout-button" class="nav-item">
+            <i class="ri-logout-box-r-line"></i>
+            <span>Sair</span>
+        </button>
+    </nav>
+    
+    <!-- === MODAIS === -->
+
+    <!-- Modal de Perfil -->
+    <div id="profile-modal" class="modal-overlay">
+        <div class="modal-content-wrapper">
+             <img id="profile-image-modal" src="https://placehold.co/96x96/E2E8F0/4A5568?text=P" alt="Foto de Perfil" class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg mx-auto -mt-16 mb-4">
+            <p id="modal-username" class="text-xl font-bold text-gray-800 mb-6"></p>
+            <div class="flex flex-col gap-3">
+                <button id="edit-photo-button" class="modal-button primary">
+                    <i class="ri-camera-line"></i> <span>Alterar Foto</span>
+                </button>
+                <button id="close-profile-modal-btn" class="modal-button secondary">Fechar</button>
+            </div>
+        </div>
+    </div>
+    <input type="file" id="photo-input" accept="image/*" class="hidden" />
+
+    <!-- Modal de Confirmação (Genérico) -->
+    <div id="confirm-modal" class="modal-overlay">
+        <div class="modal-content-wrapper p-6 w-11/12 max-w-sm text-center">
+            <h3 id="confirm-modal-title" class="text-lg font-bold text-gray-800 mb-2"></h3>
+            <p id="confirm-modal-text" class="text-gray-600 mb-6"></p>
+            <div class="flex justify-center gap-4">
+                <button id="cancel-confirm-btn" class="modal-button secondary w-full">Não</button>
+                <button id="confirm-action-btn" class="modal-button danger w-full">Sim</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
     <script src="home.js"></script>
 </body>
 </html>

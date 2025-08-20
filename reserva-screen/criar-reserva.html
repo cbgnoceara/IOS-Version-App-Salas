@@ -2,72 +2,86 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Criar Nova Reserva</title>
-    <link rel="stylesheet" href="criar-reserva.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Use o novo arquivo CSS unificado -->
+    <link rel="stylesheet" href="criar-reserva.css">
 </head>
-<body>
-    <div class="safe-area">
-        <main class="container">
-            <a href="javascript:history.back()" class="back-button">
-                <i class="ri-arrow-left-line" style="font-size: 28px;"></i>
-            </a>
+<body class="antialiased">
 
-            <h1 class="title">Criar Nova Reserva</h1>
-            <p class="subtitle">Selecione uma sala e defina o período.</p>
-            
-            <form id="reserva-form">
-                <label class="label">Selecione a Sala</label>
-                <button type="button" id="sala-selector-btn" class="input">
-                    <span id="sala-selector-text" class="placeholder-text">Clique para escolher uma sala...</span>
+    <main class="p-5 md:p-6 max-w-3xl mx-auto">
+        <header class="page-header">
+            <a href="javascript:history.back()" class="back-button"><i class="ri-arrow-left-line text-xl"></i></a>
+            <div>
+                <h1 class="text-3xl font-extrabold text-gray-800">Nova Reserva</h1>
+                <p class="text-gray-500">Preencha os dados para agendar.</p>
+            </div>
+        </header>
+        
+        <form id="reserva-form">
+            <div class="form-group">
+                <label class="form-label">Sala</label>
+                <button type="button" id="sala-selector-btn" class="input-field text-left text-gray-500">
+                    Clique para escolher
                 </button>
+            </div>
 
-                <label class="label">Data da Reserva</label>
-                <label for="native-date-input" class="input">
-                    <span id="date-selector-text" class="placeholder-text">Clique para selecionar a data</span>
+            <div class="form-group">
+                <label class="form-label">Data</label>
+                <label for="native-date-input" class="input-field text-gray-500 cursor-pointer">
+                    <span id="date-selector-text">Selecione a data</span>
                 </label>
-                <input type="date" id="native-date-input" class="visually-hidden">
+                <input type="date" id="native-date-input" class="opacity-0 w-0 h-0 absolute">
+            </div>
 
-                <div class="horario-container">
-                    <div class="horario-input">
-                        <label class="label">Horário de Início</label>
-                        <label for="native-time-inicio-input" class="input">
-                            <span id="time-inicio-text" class="placeholder-text">00:00</span>
-                        </label>
-                        <input type="time" id="native-time-inicio-input" class="visually-hidden">
-                    </div>
-                    <div class="horario-input">
-                        <label class="label">Horário de Fim</label>
-                        <label for="native-time-fim-input" class="input">
-                            <span id="time-fim-text" class="placeholder-text">00:00</span>
-                        </label>
-                        <input type="time" id="native-time-fim-input" class="visually-hidden">
-                    </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="form-group">
+                    <label class="form-label">Início</label>
+                    <label for="native-time-inicio-input" class="input-field text-gray-500 cursor-pointer">
+                        <span id="time-inicio-text">00:00</span>
+                    </label>
+                    <input type="time" id="native-time-inicio-input" class="opacity-0 w-0 h-0 absolute">
                 </div>
+                <div class="form-group">
+                    <label class="form-label">Fim</label>
+                    <label for="native-time-fim-input" class="input-field text-gray-500 cursor-pointer">
+                        <span id="time-fim-text">00:00</span>
+                    </label>
+                    <input type="time" id="native-time-fim-input" class="opacity-0 w-0 h-0 absolute">
+                </div>
+            </div>
 
-                <label class="label">Descrição (Opcional)</label>
-                <textarea
-                    id="descricao"
-                    class="input textarea"
-                    placeholder="Ex: Reunião de alinhamento do projeto X"
-                ></textarea>
-                
-                <button type="submit" id="submit-button" class="button" disabled>
-                    <span id="button-text">Confirmar Reserva</span>
-                    <div id="button-spinner" class="spinner" style="display: none;"></div>
+            <div class="form-group">
+                <label class="form-label">Descrição (Opcional)</label>
+                <textarea id="descricao" class="textarea-field" placeholder="Ex: Ensaio do grupo de louvor..."></textarea>
+            </div>
+            
+            <div class="fixed bottom-0 left-0 right-0 p-4 bg-white/80 backdrop-blur-sm border-t border-gray-200">
+                 <button type="submit" id="submit-button" class="form-button" disabled>
+                    Confirmar Reserva
                 </button>
-            </form>
-        </main>
-    </div>
+            </div>
+        </form>
+    </main>
 
-    <div id="sala-modal" class="modal-container">
-        <div class="modal-content">
+    <!-- Modal de Seleção de Sala -->
+    <div id="sala-modal" class="modal-overlay">
+        <div class="modal-content-wrapper">
             <div class="modal-handle"></div>
-            <h2 class="modal-title">Selecione uma Sala</h2>
-            <ul id="sala-list" class="modal-list"></ul>
+            <h2 class="text-xl font-bold text-gray-800 text-center mb-4">Selecione uma Sala</h2>
+            <ul id="sala-list" class="overflow-y-auto divide-y divide-gray-200"></ul>
         </div>
     </div>
+
+    <!-- Toast Notification -->
+    <div id="toast-notification" class="toast"></div>
 
     <script src="criar-reserva.js"></script>
 </body>

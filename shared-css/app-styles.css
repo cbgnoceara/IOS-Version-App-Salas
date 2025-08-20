@@ -1,40 +1,58 @@
-/* home.css */
+/* app-styles.css */
 
-/* Estilos base e customizações */
+/* --- CONFIGURAÇÕES GLOBAIS E FUNDO --- */
 body {
     font-family: 'Inter', sans-serif;
-    /* Fundo com um padrão SVG sutil para dar textura */
     background-color: #f0f2f5;
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4d8e3' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-bottom: 140px;
 }
 
-/* Garante que o conteúdo principal não seja sobreposto pelo rodapé fixo */
-main {
-    padding-bottom: 120px;
+/* --- CABEÇALHO PADRÃO DAS PÁGINAS INTERNAS --- */
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
-/* --- Barra de Navegação --- */
+.back-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px -5px rgba(0,0,0,0.1);
+    color: #4b5563;
+    transition: all 0.2s ease;
+}
+.back-button:active {
+    transform: scale(0.9);
+}
+
+/* --- BARRA DE NAVEGAÇÃO --- */
 .nav-bar {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    margin: 0 auto 1.25rem auto; /* 20px de margem inferior */
-    width: calc(100% - 2.5rem); /* 40px de espaçamento lateral total */
-    max-width: 400px; /* Largura máxima para telas maiores */
-    
+    margin: 0 auto 1.25rem auto;
+    width: calc(100% - 2.5rem);
+    max-width: 400px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    
     background-color: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    
-    border-radius: 9999px; /* pill shape */
+    border-radius: 9999px;
     border: 1px solid rgba(0, 0, 0, 0.05);
     box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
-    padding: 0.5rem; /* 8px */
+    padding: 0.5rem;
     z-index: 100;
 }
 
@@ -43,9 +61,9 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 0.75rem; /* 12px */
+    font-size: 0.75rem;
     font-weight: 500;
-    color: #6b7280; /* text-gray-500 */
+    color: #6b7280;
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -53,43 +71,64 @@ main {
     border: none;
     background-color: transparent;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .nav-item i {
-    font-size: 1.5rem; /* 24px */
+    font-size: 1.5rem;
     margin-bottom: 2px;
 }
 
 .nav-item.active {
-    background-color: #3b82f6; /* bg-blue-600 */
+    background-color: #3b82f6;
     color: white;
     box-shadow: 0 4px 14px -4px rgba(59, 130, 246, 0.6);
 }
 
-.nav-item:not(.active):hover {
-    color: #3b82f6; /* text-blue-600 */
-}
-
-/* --- Cards de Reserva --- */
-.reserva-card {
+/* --- CARDS DE LISTA (Salas e Usuários) --- */
+.list-card {
     background-color: white;
-    border-radius: 1rem; /* 16px */
-    padding: 1.25rem; /* 20px */
+    border-radius: 1rem;
+    padding: 1rem;
     box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e7eb; /* border-gray-200 */
+    border: 1px solid #e5e7eb;
     display: flex;
-    gap: 1rem; /* 16px */
-    align-items: flex-start;
+    gap: 1rem;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.list-card:active {
+    transform: scale(0.97);
+    box-shadow: 0 4px 15px -8px rgba(0, 0, 0, 0.1);
 }
 
-.card-color-bar {
-    width: 5px;
-    height: 60px; /* Altura inicial */
-    border-radius: 9999px;
+/* --- AVATAR DO USUÁRIO --- */
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
     flex-shrink: 0;
 }
+.user-avatar-placeholder {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #e5e7eb;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.user-avatar-placeholder i {
+    font-size: 1.5rem;
+}
 
-/* --- Modais --- */
+
+/* --- MODAIS (ESTILO CORRIGIDO E CENTRALIZADO) --- */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -97,9 +136,9 @@ main {
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 50;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    z-index: 150;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -110,13 +149,12 @@ main {
 }
 
 .modal-content-wrapper {
-    background-color: #f3f4f6;
+    background-color: white; /* Fundo branco para o modal */
     border-radius: 1.5rem; /* 24px */
     box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.2);
     width: 90%;
     max-width: 350px;
     padding: 1.5rem; /* 24px */
-    text-align: center;
     transform: scale(0.95);
     opacity: 0;
     transition: transform 0.3s ease, opacity 0.3s ease;
@@ -127,6 +165,7 @@ main {
     opacity: 1;
 }
 
+/* Estilos para os botões dentro do modal */
 .modal-button {
     width: 100%;
     display: flex;
@@ -162,32 +201,40 @@ main {
     background-color: #dc2626;
 }
 
-/* --- Animações e Carregamento --- */
+
+/* --- ANIMAÇÕES E SPINNER --- */
 .card-enter {
     opacity: 0;
     transform: translateY(20px);
     animation: card-enter-animation 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
-
-@keyframes card-enter-animation {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+@keyframes card-enter-animation { to { opacity: 1; transform: translateY(0); } }
 
 .spinner {
-    width: 48px;
-    height: 48px;
-    border: 5px solid #d1d5db; /* border-gray-300 */
-    border-bottom-color: #3b82f6; /* text-blue-600 */
-    border-radius: 50%;
-    display: inline-block;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
+    width: 24px; height: 24px; border: 3px solid rgba(255,255,255,0.3);
+    border-bottom-color: white; border-radius: 50%;
+    display: inline-block; animation: rotation 1s linear infinite;
 }
+.spinner.dark { border-color: #d1d5db; border-bottom-color: #3b82f6; }
+@keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-@keyframes rotation {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+/* --- TOAST NOTIFICATION --- */
+.toast {
+    position: fixed;
+    bottom: 120px;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    background-color: #ef4444;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    z-index: 200;
+    font-weight: 600;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
 }

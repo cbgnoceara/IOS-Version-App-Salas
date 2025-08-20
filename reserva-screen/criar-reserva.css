@@ -1,204 +1,154 @@
-/* criar-reserva.css - Fiel ao StyleSheet do React Native */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background-color: #fff;
+/* criar-reserva.css (Atualizado e Independente) */
+
+/* --- FONTES E CONFIGURAÇÕES GLOBAIS --- */
+@import url('[https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap)');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f2f5;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='[http://www.w3.org/2000/svg'%3E%3Cg](http://www.w3.org/2000/svg'%3E%3Cg) fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4d8e3' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.safe-area {
-    background-color: #fff;
-}
-
-.container {
-    padding: 24px;
-    padding-bottom: 60px;
+/* --- CABEÇALHO --- */
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
 .back-button {
-    display: inline-block;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    align-self: flex-start;
-    color: #111827;
-    text-decoration: none;
-    border: none;
-    background: none;
-    cursor: pointer;
-}
-
-.title {
-    font-size: 26px;
-    font-weight: bold;
-    color: #111827;
-}
-
-.subtitle {
-    font-size: 16px;
-    color: #6b7280;
-    margin-bottom: 30px;
-}
-
-.label {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 8px;
-    color: #374151;
-    font-weight: 500;
-}
-
-.input {
-    width: 100%;
-    height: 50px;
-    background-color: #f9fafb;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    padding: 0 12px;
-    margin-bottom: 20px;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    box-sizing: border-box;
-    text-align: left;
-    font-family: inherit;
-    cursor: pointer;
-}
-
-.input.textarea {
-    height: 100px;
-    padding-top: 12px;
-    resize: vertical;
-    cursor: text;
-}
-
-.input-text {
-    font-size: 16px;
-    color: #111827;
-}
-
-.placeholder-text {
-    font-size: 16px;
-    color: #9ca3af;
-}
-
-.horario-container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.horario-input {
-    width: 48%;
-}
-
-.button {
-    display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-color: #111827;
-    padding: 16px;
-    border-radius: 10px;
-    margin-top: 10px;
-    border: none;
-    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px -5px rgba(0,0,0,0.1);
+    color: #4b5563;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+.back-button:active {
+    transform: scale(0.9);
 }
 
-.button:disabled {
-    background-color: #9ca3af; /* Cor para estado desabilitado */
+/* --- FORMULÁRIO --- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-label {
+    display: block;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+.input-field, .textarea-field {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.75rem;
+    background-color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    color: #111827;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.input-field:focus, .textarea-field:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+.textarea-field {
+    min-height: 100px;
+    resize: vertical;
+}
+.form-button {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(to right, #3b82f6, #60a5fa);
+    box-shadow: 0 8px 20px -8px rgba(59, 130, 246, 0.5);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 56px;
+}
+.form-button:disabled {
+    background: #9ca3af;
+    box-shadow: none;
     cursor: not-allowed;
 }
-
-.button-text {
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
+.form-button:not(:disabled):active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 15px -8px rgba(59, 130, 246, 0.5);
 }
 
-.spinner {
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-top-color: #fff;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+/* --- MODAL DE SELEÇÃO DE SALA --- */
+.modal-overlay {
+    position: fixed; inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    display: flex; align-items: flex-end; justify-content: center;
+    z-index: 50; opacity: 0; visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
+.modal-overlay.visible { opacity: 1; visibility: visible; }
 
-@keyframes spin {
-    to { transform: rotate(360deg); }
+.modal-content-wrapper {
+    background-color: #f3f4f6;
+    border-radius: 1.5rem 1.5rem 0 0;
+    box-shadow: 0 -10px 40px -10px rgba(0, 0, 0, 0.2);
+    width: 100%; max-width: 500px;
+    max-height: 80vh;
+    padding: 1rem 1.5rem 2rem 1.5rem;
+    display: flex; flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
 }
-
-/* Estilos do Modal */
-.modal-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    justify-content: flex-end;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-}
-
-.modal-container.visible {
-    display: flex;
-}
-
-.modal-content {
-    background-color: white;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    padding: 5px 10px 20px;
-    max-height: 50%;
-    display: flex;
-    flex-direction: column;
-}
+.modal-overlay.visible .modal-content-wrapper { transform: translateY(0); }
 
 .modal-handle {
-    width: 40px;
-    height: 5px;
-    background-color: #d1d5db;
-    border-radius: 2.5px;
-    align-self: center;
-    margin: 10px 0;
+    width: 40px; height: 5px; background-color: #d1d5db;
+    border-radius: 3px; margin: 0 auto 1.5rem auto; flex-shrink: 0;
 }
 
-.modal-title {
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    margin: 15px 0;
-    color: #374151;
+/* --- SPINNER E TOAST --- */
+.spinner {
+    width: 24px; height: 24px; border: 3px solid rgba(255,255,255,0.3);
+    border-bottom-color: white; border-radius: 50%;
+    display: inline-block; animation: rotation 1s linear infinite;
 }
+@keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-.modal-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    overflow-y: auto;
+.toast {
+    position: fixed;
+    bottom: 100px; /* Posição ajustada para não ficar sobre o botão */
+    left: 50%;
+    transform: translate(-50%, 20px);
+    background-color: #ef4444;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    z-index: 200;
+    font-weight: 600;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
-
-.modal-item {
-    padding: 15px 0;
-    border-bottom: 1px solid #f3f4f6;
-    cursor: pointer;
-}
-
-.modal-item-text {
-    font-size: 16px;
-    text-align: center;
-    color: #111827;
-}
-
-/* Classe para esconder inputs de forma acessível */
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
 }
