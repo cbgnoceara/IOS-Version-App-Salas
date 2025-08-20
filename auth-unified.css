@@ -1,0 +1,195 @@
+/* /css/auth-unified.css - Estilo Unificado para Telas de Autenticação */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --cor-primaria: #3A6AB2;
+    --cor-secundaria: #608BC5;
+    --cor-branca: #FFFFFF;
+    --cor-erro: #ef4444;
+    --fonte-principal: 'Poppins', 'system-ui', sans-serif;
+}
+
+/* --- 1. FUNDO PADRÃO COM IMAGEM E DESFOQUE --- */
+body {
+    background-color: #1a1a2e;
+    font-family: var(--fonte-principal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    z-index: -1;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('/assets/20250728_2011_Menorá\ Azul\ e\ Branco_remix_01k19mpt9re4t86cs958qkep5y.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    filter: blur(8px);
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- 2. CARD DE VIDRO ESCURO (PADRÃO UNIFICADO) --- */
+.glass-card {
+    width: 100%;
+    max-width: 450px;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* --- 3. ELEMENTOS DE CONTEÚDO --- */
+.icon-display i {
+    font-size: 5rem;
+    background: linear-gradient(45deg, var(--cor-branca), rgba(255, 255, 255, 0.7));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+}
+
+.title {
+    color: var(--cor-branca);
+    font-size: 2.5em;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.2em;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 35px;
+}
+
+/* --- 4. ELEMENTOS DE FORMULÁRIO --- */
+.input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    font-family: var(--fonte-principal);
+    font-size: 1em;
+    transition: all 0.3s ease;
+    color: var(--cor-branca);
+}
+
+.input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--cor-branca);
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Mensagem de erro */
+.error-text {
+    padding: 0; margin: 0; font-weight: 500;
+    border-radius: 8px; font-size: 0.9em;
+    text-align: center; color: var(--cor-branca);
+    transition: all 0.3s ease;
+}
+.error-text:not(:empty) {
+    background-color: rgba(239, 68, 68, 0.5);
+    padding: 10px; margin-bottom: 15px;
+}
+
+/* --- 5. BOTÕES E LINKS --- */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.button, .button-outline {
+    width: 100%;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.button {
+    background: var(--cor-branca);
+    color: var(--cor-primaria);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button-outline {
+    background-color: transparent;
+    color: var(--cor-branca);
+    border-color: var(--cor-branca);
+}
+
+.button:hover, .button-outline:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.button-outline:hover {
+    background-color: var(--cor-branca);
+    color: var(--cor-primaria);
+}
+
+.link-container {
+    margin-top: 25px;
+}
+
+.link-text {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.link-text:hover {
+    text-decoration: underline;
+    color: var(--cor-branca);
+}
+
+/* --- 6. AJUSTES RESPONSIVOS --- */
+@media (min-width: 600px) {
+    .button-container {
+        flex-direction: row;
+    }
+}
