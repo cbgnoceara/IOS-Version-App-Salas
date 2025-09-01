@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch('https://salas-app-back-end.onrender.com/api/users/login', {
+            const response = await fetch('"https://salas-app-backend-service-909187510548.southamerica-east1.run.app/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,4 +53,5 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Erro de rede:', error);
         }
     });
+
 });
